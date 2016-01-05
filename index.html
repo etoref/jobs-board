@@ -18,7 +18,7 @@
         <script type="text/template" id="jobs_template">
             <ul><label>Current openings at Credible:</label>
             <% _.each(jobList, function(job){ %>
-                <li><a href=<%= _.escape(job.absolute_url) %>><%= _.escape(job.title) %></a></li>
+                <li><a href=<%= _.escape(job.absolute_url) %> target="_blank"><%= _.escape(job.title) %></a></li>
             <% }); %>
             </ul>
         </script>
