@@ -6,22 +6,22 @@
         <script src="lib/jquery-min.js"></script>
         <script src="lib/underscore-min.js"></script>
         <script src="lib/backbone-min.js"></script>
-        <script src="JobsView.js"></script>
+        <script src="Views.js"></script>
+        <script src="Models.js"></script>
 
         <script>
             $(document).ready(function() {
-                var jobsView = new JobsView( {el:"#jobs_container"} );
-                jobsView.render();
+                JobCollection = new JobCollection();
+                jobsView = new JobListView( {el:"#jobs_container", collection: JobCollection} );
+                JobCollection.fetch({
+                    success: function(){
+                        alert("Load jobs successful!");
+                        jobsView.render();
+                    }
+                });
             });
         </script>
 
-        <script type="text/template" id="jobs_template">
-            <ul><label>Current openings at Credible:</label>
-            <% _.each(jobList, function(job){ %>
-                <li><a href=<%= _.escape(job.absolute_url) %> target="_blank"><%= _.escape(job.title) %></a></li>
-            <% }); %>
-            </ul>
-        </script>
     </head>
     <body>
         <div id="jobs_container"></div>
